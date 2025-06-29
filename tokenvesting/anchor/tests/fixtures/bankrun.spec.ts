@@ -3,7 +3,7 @@ import { BN, Program } from "@coral-xyz/anchor";
 import { Keypair, PublicKey } from "@solana/web3.js";
 import { Vesting } from "../../target/types/vesting";
 import { BankrunProvider, startAnchor } from "anchor-bankrun";
-// @ts-ignore
+// @ts-ignore ; ignore it for now
 import { createMint, mintTo } from "spl-token-bankrun";
 
 import IDL from "../../target/idl/vesting.json";

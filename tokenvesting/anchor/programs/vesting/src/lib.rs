@@ -6,7 +6,7 @@ use anchor_spl::associated_token::AssociatedToken;
 
 
 
-declare_id!("FqzkXZdwYjurnUKetJCAvaUw5WAqbwzU6gZEwydeEfqS");
+declare_id!("6Q5NBNNJNukLLYqdMKtM6nv359wSXQ1h1HRk67mS1jMW");
 
 #[program]
 pub mod vesting {
