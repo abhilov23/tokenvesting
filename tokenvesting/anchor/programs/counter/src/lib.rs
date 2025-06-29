@@ -1,7 +1,7 @@
 #![allow(clippy::result_large_err)]
 
 use anchor_lang::prelude::*;
-use anchor_spl::token_interface::{Mint,TokenAccount, TokenInterface, transfer_checked, TransferChecked};
+use anchor_spl::token_interface::{self, Mint,TokenAccount, TokenInterface, transfer_checked, TransferChecked};
 use anchor_spl::associated_token::AssociatedToken;
 
 
@@ -10,6 +10,8 @@ declare_id!("FqzkXZdwYjurnUKetJCAvaUw5WAqbwzU6gZEwydeEfqS");
 
 #[program]
 pub mod vesting {
+    use anchor_spl::token_interface;
+
     use super::*;
     
     pub fn create_vesting_account(ctx: Context<CreateVestingAccount>, company_name: String)-> Result<()>{
@@ -47,7 +49,7 @@ pub mod vesting {
 
     pub fn claim_tokens(
         ctx: Context<ClaimTokens>,
-        company_name: String
+        _company_name: String
     )-> Result<()>{
         let employee_account = &mut ctx.accounts.employee_account;
 
@@ -62,6 +64,50 @@ pub mod vesting {
         if total_vesting_time == 0 {
             return Err(ErrorCode::InvalidVestingPeriod.into());
         }
+     
+       let vested_amount = if now >= employee_account.end_time {
+           employee_account.total_amount
+       } else {
+         match employee_account.total_amount.checked_mul(time_since_start as u64) {
+            Some(product) => 
+                product / total_vesting_time as u64,
+            None => {
+                return Err(ErrorCode::CalculationOverflow.into());
+            }
+         }
+       };
+
+       let clamable_amount = vested_amount.saturating_sub(employee_account.total_withdrawn);
+
+       if clamable_amount == 0 {
+           return Err(ErrorCode::NothingToClaim.into());
+       }
+        
+        let transfer_cpi_accounts = TransferChecked{
+            from: ctx.accounts.treasury_token_account.to_account_info(),
+            mint: ctx.accounts.mint.to_account_info(),
+            to: ctx.accounts.employee_token_account.to_account_info(),
+            authority: ctx.accounts.treasury_token_account.to_account_info(),
+        };
+
+        let cpi_program = ctx.accounts.token_program.to_account_info();
+
+        let signer_seeds: &[&[&[u8]]] = &[
+            &[b"vesting_treasury",
+            ctx.accounts.vesting_account.company_name.as_ref(),
+            &[ctx.accounts.vesting_account.treasury_bump]]
+        ];
+
+        let cpi_context = CpiContext::new(cpi_program, transfer_cpi_accounts).with_signer(signer_seeds);
+
+        let decimals = ctx.accounts.mint.decimals;
+
+        token_interface::transfer_checked(cpi_context, clamable_amount as u64, decimals)?;
+        
+        employee_account.total_withdrawn += clamable_amount;
+
+
+
         Ok(())
     }
 }
@@ -191,5 +237,9 @@ pub enum ErrorCode{
     #[msg("Claim not available yet")]
     ClaimNotAvailableYet,
     #[msg("Invalid Vesting Period")]
-    InvalidVestingPeriod
+    InvalidVestingPeriod,
+    #[msg("Calculation overflow")]
+    CalculationOverflow,
+    #[msg("Nothing to claim")]
+    NothingToClaim
 }
