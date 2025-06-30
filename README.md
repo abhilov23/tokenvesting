@@ -1,88 +1,78 @@
-# tokenvesting
+# Token Vesting Program on Solana
 
-This is a Next.js app containing:
+## Overview
 
-- Tailwind CSS setup for styling
-- Useful wallet UI elements setup using [@solana/web3.js](https://www.npmjs.com/package/@solana/web3.js)
-- A basic Counter Solana program written in Anchor
-- UI components for interacting with the Counter program
+The Token Vesting Program on Solana enables the gradual release of tokens to beneficiaries over a defined period, supporting customizable vesting schedules and optional cliff periods. Built with Rust and the Anchor framework, this program ensures secure and efficient token management on the Solana blockchain.
 
-## Getting Started
+## Program Deployment
 
-### Installation
+- **Program ID (devnet):** `6Q5NBNNJNukLLYqdMKtM6nv359wSXQ1h1HRk67mS1jMW`
+- **Deployment Signature:** `5CpAprpicQXdmXk8RtQMcsp9bb93bwJfedncXzibLsAJBXBBdgmcRFdgMdZQSDBWbK8wG5o796hH1FnchFUC3HF`
 
-#### Download the template
 
-```shell
-pnpm create solana-dapp@latest -t gh:solana-developers/solana-templates/legacy/tokenvesting
+Repository: [github.com/abhilov23/tokenvesting](https://github.com/abhilov23/tokenvesting)
+
+---
+
+## Features
+
+- **Customizable Vesting Schedules:** Set up linear vesting with optional cliff periods.
+- **Revocable Vesting:** Contract owners can revoke vesting schedules if configured.
+- **Multiple Beneficiaries:** Supports vesting schedules for multiple users.
+- **Secure Token Management:** Leverages Solana's token program for safe transfers.
+- **Audit-Ready:** Follows best practices for secure smart contract development.
+
+---
+
+## Installation
+
+1. **Clone the Repository:**
+     ```sh
+     git clone https://github.com/abhilov23/tokenvesting.git
+     cd tokenvesting
+     ```
+
+2. **Install Dependencies:**
+     ```sh
+     yarn install
+     ```
+
+3. **Build the Program:**
+     ```sh
+     anchor build
+     ```
+
+4. **Configure Solana Network:**
+     Set up Solana CLI for a local or devnet cluster:
+     ```sh
+     solana config set --url https://api.devnet.solana.com
+     ```
+
+---
+
+
+## Usage
+
+- **Create a Vesting Schedule:** Initialize a vesting schedule with a beneficiary, token mint, start time, cliff, duration, and amount.
+- **Release Tokens:** Beneficiaries can claim vested tokens after the cliff period.
+- **Revoke Vesting:** Owners can revoke vesting schedules if enabled.
+
+---
+
+## Images
+
+```markdown
+![Main page](./images/Screenshot%202025-06-30%20153717.png)
+![Main page](./images/image.png)
 ```
 
-#### Install Dependencies
 
-```shell
-pnpm install
-```
+## Contributing
 
-## Apps
+Contributions are welcome! Please open an issue or submit a pull request on [GitHub](https://github.com/abhilov23/tokenvesting).
 
-### anchor
+---
 
-This is a Solana program written in Rust using the Anchor framework.
+## License
 
-#### Commands
-
-You can use any normal anchor commands. Either move to the `anchor` directory and run the `anchor` command or prefix the
-command with `pnpm`, eg: `pnpm anchor`.
-
-#### Sync the program id:
-
-Running this command will create a new keypair in the `anchor/target/deploy` directory and save the address to the
-Anchor config file and update the `declare_id!` macro in the `./src/lib.rs` file of the program.
-
-You will manually need to update the constant in `anchor/lib/counter-exports.ts` to match the new program id.
-
-```shell
-pnpm anchor keys sync
-```
-
-#### Build the program:
-
-```shell
-pnpm anchor-build
-```
-
-#### Start the test validator with the program deployed:
-
-```shell
-pnpm anchor-localnet
-```
-
-#### Run the tests
-
-```shell
-pnpm anchor-test
-```
-
-#### Deploy to Devnet
-
-```shell
-pnpm anchor deploy --provider.cluster devnet
-```
-
-### web
-
-This is a React app that uses the Anchor generated client to interact with the Solana program.
-
-#### Commands
-
-Start the web app
-
-```shell
-pnpm dev
-```
-
-Build the web app
-
-```shell
-pnpm build
-```
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
