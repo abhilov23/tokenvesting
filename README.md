@@ -19,8 +19,6 @@ The Token Vesting Program on Solana enables the gradual release of tokens to ben
 - **Deployment Signature:** `5CpAprpicQXdmXk8RtQMcsp9bb93bwJfedncXzibLsAJBXBBdgmcRFdgMdZQSDBWbK8wG5o796hH1FnchFUC3HF`
 
 
-Repository: [github.com/abhilov23/tokenvesting](https://github.com/abhilov23/tokenvesting)
-
 ---
 
 ## Features
