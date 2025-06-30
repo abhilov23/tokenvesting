@@ -18,10 +18,9 @@ export function getVestingProgram(provider: AnchorProvider, address?: PublicKey)
 
 export function getVestingProgramId(cluster: Cluster) {
   switch (cluster) {
-    case 'devnet':
-        return new PublicKey('6Q5NBNNJNukLLYqdMKtM6nv359wSXQ1h1HRk67mS1jMW')
     case 'testnet':
-
+        return new PublicKey('6Q5NBNNJNukLLYqdMKtM6nv359wSXQ1h1HRk67mS1jMW')
+    case 'devnet':
     return new PublicKey('6Q5NBNNJNukLLYqdMKtM6nv359wSXQ1h1HRk67mS1jMW')
     case 'mainnet-beta':
     default:

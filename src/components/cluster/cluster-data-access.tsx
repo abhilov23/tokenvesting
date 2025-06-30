@@ -80,7 +80,7 @@ export function ClusterProvider({ children }: { children: ReactNode }) {
         new Connection(cluster.endpoint)
         setClusters([...clusters, cluster])
       } catch (err) {
-        console.error(`${err}`)
+        console.error(`err: ${err}`)
       }
     },
     deleteCluster: (cluster: SolanaCluster) => {
