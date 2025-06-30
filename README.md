@@ -4,6 +4,15 @@
 
 The Token Vesting Program on Solana enables the gradual release of tokens to beneficiaries over a defined period, supporting customizable vesting schedules and optional cliff periods. Built with Rust and the Anchor framework, this program ensures secure and efficient token management on the Solana blockchain.
 
+## Images
+
+
+![Main page](images/Screenshot%202025-06-30%20153717.png)
+![Main page](images/image.png)
+
+
+
+
 ## Program Deployment
 
 - **Program ID (devnet):** `6Q5NBNNJNukLLYqdMKtM6nv359wSXQ1h1HRk67mS1jMW`
@@ -58,27 +67,6 @@ Repository: [github.com/abhilov23/tokenvesting](https://github.com/abhilov23/tok
 - **Revoke Vesting:** Owners can revoke vesting schedules if enabled.
 
 ---
-
-## Images
-
-
-![Main page](images/Screenshot%202025-06-30%20153717.png)
-![Main page](images/image.png)
-
-
-**Possible reasons images are not showing:**
-- The image files do not exist at the specified paths (`images/Screenshot 2025-06-30 153717.png` and `images/image.png`).
-- There may be a typo in the file names or extensions (check for spaces, capitalization, or missing files).
-- The images folder is not in the same directory as your README.md file.
-- If viewing on GitHub, spaces in filenames should be URL-encoded as `%20`, but most markdown renderers handle this automatically.
-- If viewing locally, ensure your markdown viewer supports relative image paths.
-
-**To fix:**
-- Verify the images exist at `./images/` relative to your README.md.
-- Double-check file names and extensions.
-- Try renaming files to avoid spaces or special characters.
-- If issues persist, use absolute URLs or upload images directly to your repository.
-
 
 ## Contributing
 
