@@ -61,10 +61,23 @@ Repository: [github.com/abhilov23/tokenvesting](https://github.com/abhilov23/tok
 
 ## Images
 
-```markdown
-![Main page](./images/Screenshot%202025-06-30%20153717.png)
-![Main page](./images/image.png)
-```
+
+![Main page](images/Screenshot%202025-06-30%20153717.png)
+![Main page](images/image.png)
+
+
+**Possible reasons images are not showing:**
+- The image files do not exist at the specified paths (`images/Screenshot 2025-06-30 153717.png` and `images/image.png`).
+- There may be a typo in the file names or extensions (check for spaces, capitalization, or missing files).
+- The images folder is not in the same directory as your README.md file.
+- If viewing on GitHub, spaces in filenames should be URL-encoded as `%20`, but most markdown renderers handle this automatically.
+- If viewing locally, ensure your markdown viewer supports relative image paths.
+
+**To fix:**
+- Verify the images exist at `./images/` relative to your README.md.
+- Double-check file names and extensions.
+- Try renaming files to avoid spaces or special characters.
+- If issues persist, use absolute URLs or upload images directly to your repository.
 
 
 ## Contributing
